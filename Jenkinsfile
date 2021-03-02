@@ -49,7 +49,7 @@ pipeline{
 
         stage('docker image'){
             steps{
-                bat "docker build -t i-tanisha-develop ."
+                bat "docker build -t i-tanishakapoor-develop ."
             }
         }
         stage('stop running container'){
