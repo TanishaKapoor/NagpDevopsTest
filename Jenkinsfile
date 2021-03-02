@@ -58,7 +58,7 @@ pipeline{
                     containerID = powershell(returnStdout:true,script:'docker ps -af name=^"c-tanishakapoor-feature" --format "{{.ID}}"')
                     if(containerID){
                         bat "docker stop ${containerID}"
-                        bat "dockr rm -f ${containerID}"
+                        bat "docker rm -f ${containerID}"
                     }
                 }
             }
