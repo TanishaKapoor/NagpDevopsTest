@@ -3,11 +3,11 @@ pipeline{
 
     options{
         disableConcurrentBuilds()
-        buildDiscarder(logRotater(numToKeepStr:'30'))
+        buildDiscarder(logRotator(numToKeepStr:'30'))
     }
 
     environment{
-        Nuget_Url= "https://api.nuget.org/v3/index.json"
+        Nuget_Url= 'https://api.nuget.org/v3/index.json'
         SonarQube_Project_Key='sqs:k-tanishakapoor-develop'
          SonarQube_Project_Name='sqs:project-tanishakapoor-develop'
           SonarQube_Version ='1.0.0'
