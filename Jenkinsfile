@@ -65,7 +65,8 @@ pipeline{
         }
         stage('docker deployment'){
             steps{
-                bat "docker run -d -p 8080:80 --name c-tanishakapoor-develop i-tanishakapoor-develop"
+                //8080 port is busy so changing to new port
+                bat "docker run -d -p 3333:80 --name c-tanishakapoor-develop i-tanishakapoor-develop"
             }
         }
     }
