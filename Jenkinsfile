@@ -65,7 +65,7 @@ pipeline{
         }
         stage('docker deployment'){
             steps{
-                bat "docker run -d -p 8080:80 -name c-tanishakapoor-develop i-tanishakapoor-develop"
+                bat "docker run -d -p 8080:80 --name c-tanishakapoor-develop i-tanishakapoor-develop"
             }
         }
     }
