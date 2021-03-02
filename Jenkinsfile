@@ -8,15 +8,15 @@ pipeline{
 
     environment{
         Nuget_Url= 'https://api.nuget.org/v3/index.json'
-        SonarQube_Project_Key='sqs:k-tanishakapoor-develop'
-         SonarQube_Project_Name='sqs:project-tanishakapoor-develop'
+        SonarQube_Project_Key='sqs:k-tanishakapoor-feature'
+         SonarQube_Project_Name='sqs:project-tanishakapoor-feature'
           SonarQube_Version ='1.0.0'
           scannerHome = tool name :'sonar_scanner_dotnet',type:'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
     }
     stages{
         stage('nuget store'){
             steps{
-                echo 'I am in develop branch'
+                echo 'I am in feature branch'
                 bat 'dotnet clean'
                 bat 'dotnet restore'
             }
@@ -49,13 +49,13 @@ pipeline{
 
         stage('docker image'){
             steps{
-                bat "docker build -t i-tanishakapoor-develop ."
+                bat "docker build -t i-tanishakapoor-feature ."
             }
         }
         stage('stop running container'){
             steps{
                 script{
-                    containerID = powershell(returnStdout:true,script:'docker ps -af name=^"c-tanishakapoor-develop" --format "{{.ID}}"')
+                    containerID = powershell(returnStdout:true,script:'docker ps -af name=^"c-tanishakapoor-feature" --format "{{.ID}}"')
                     if(containerID){
                         bat "docker stop ${containerID}"
                         bat "dockr rm -f ${containerID}"
@@ -65,8 +65,7 @@ pipeline{
         }
         stage('docker deployment'){
             steps{
-                //8080 port is busy so changing to new port
-                bat "docker run -d -p 3333:80 --name c-tanishakapoor-develop i-tanishakapoor-develop"
+                bat "docker run -d -p 9090:80 --name c-tanishakapoor-feature i-tanishakapoor-feature"
             }
         }
     }
