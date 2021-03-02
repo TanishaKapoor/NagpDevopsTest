@@ -24,8 +24,7 @@ pipeline{
         stage('start sonarqube analysis'){
             steps{
                 withSonarQubeEnv('Test_Sonar'){
-                    bat "dotnet \"${scannerHome}/SonarScanner.MsBuild.dll\" begin /k:${env.SonarQube_Project_Key} /n:${env.SonarQube_Project_Name}
-                    /v:${env.SonarQube_Version}"
+                    bat "dotnet \"${scannerHome}/SonarScanner.MsBuild.dll\" begin /k:${env.SonarQube_Project_Key} /n:${env.SonarQube_Project_Name} /v:${env.SonarQube_Version}"
                 }
             }
         }
