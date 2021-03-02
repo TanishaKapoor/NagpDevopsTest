@@ -11,7 +11,7 @@ pipeline{
         SonarQube_Project_Key='sqs:k-tanishakapoor-develop'
          SonarQube_Project_Name='sqs:project-tanishakapoor-develop'
           SonarQube_Version ='1.0.0'
-          scannerHome = tool name :'sonar_scanner_dotnet',type:'hudson.plugins.sonar.MSBuildSQRunnerInstallation'
+          scannerHome = tool name :'sonar_scanner_dotnet',type:'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
     }
     stages{
         stage('nuget store'){
