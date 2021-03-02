@@ -55,17 +55,17 @@ pipeline{
         stage('stop running container'){
             steps{
                 script{
-                    containerID = powershell(returnStdout:true,script:'docker ps -af name=^"c-tanishakapoor-develop"--format "{{.ID}}"')
+                    containerID = powershell(returnStdout:true,script:'docker ps -af name=^"c-tanishakapoor-develop" --format "{{.ID}}"')
                     if(containerID){
                         bat "docker stop ${containerID}"
-                        bat "dockr em -f ${containerID}"
+                        bat "dockr rm -f ${containerID}"
                     }
                 }
             }
         }
         stage('docker deployment'){
             steps{
-                bat "docker run -d -p 8080 :80 -name c-tanishakapoor-develop i-tanishakapoor-develop"
+                bat "docker run -d -p 8080:80 -name c-tanishakapoor-develop i-tanishakapoor-develop"
             }
         }
     }
